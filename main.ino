@@ -11,7 +11,7 @@
 
 
 #include "PulsePosition.h"
-#include "mavlink/common/mavlink.h"
+#include "mavlink_v2/common/mavlink.h"
 
 
 //////////////////////CONFIGURATION///////////////////////////////
@@ -122,6 +122,8 @@ void loop() {
       ppm[1] = 1500 + mavlink_msg_manual_control_get_y(&msg) / 2;
       ppm[2] = 1500 + mavlink_msg_manual_control_get_z(&msg) / 2; //throttle
       ppm[3] = 1500 + mavlink_msg_manual_control_get_r(&msg) / 2;
+
+      DEBUG.println(mavlink_msg_manual_control_get_z(&msg) / 2);
 
       buttonsToPPM(mavlink_msg_manual_control_get_buttons(&msg));
 
